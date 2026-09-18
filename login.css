@@ -4,11 +4,11 @@ body{
         var(--bg);
 }
 
-/* header image (student portal banner) */
-body > img{
+/* header banner image */
+.banner{
     width: 100%;
     display: block;
-    max-height: 260px;
+    max-height: 240px;
     object-fit: cover;
 }
 
@@ -32,7 +32,6 @@ body > img{
 
 .logincontain{
     min-height: 539px;
-    background-color: transparent;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -51,19 +50,56 @@ body > img{
     overflow: hidden;
     padding-bottom: 28px;
 }
+
+/* card header */
+.form-head{
+    padding: 22px 30px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 22px;
+    background: linear-gradient(120deg, #fff, #fff8fa);
+}
 .loginform h2{
-    padding: 24px 30px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     color: var(--brand-dark);
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 24px;
-    background: linear-gradient(120deg, #fff, #fff8fa);
+    margin: 0;
 }
-.loginform input{
+.form-head .sub{
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* error banner */
+.loginerror{
+    margin: 0 24px 18px 24px;
+    padding: 10px 14px;
+    background: #fde2e2;
+    color: #b91c1c;
+    border: 1px solid #f5b5b5;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* labelled fields */
+.field{
+    display: flex;
+    flex-direction: column;
+    margin: 0 24px 16px 24px;
+}
+.field label{
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+    letter-spacing: .3px;
+}
+.loginform input[type="text"],
+.loginform input[type="password"]{
     border: 1px solid var(--line);
     padding: 12px 14px;
-    margin: 0 24px 16px 24px;
     height: 46px;
     border-radius: 10px;
     font-size: 14px;
@@ -78,34 +114,101 @@ body > img{
     outline: none;
     border: 1px solid var(--brand-light);
 }
-.loginform .selecta{
+
+/* role radios */
+.selecta{
     display: flex;
     align-items: center;
-    margin: 0 24px 20px 24px;
+    gap: 26px;
+    margin: 4px 24px 16px 24px;
+}
+.selecta label{
+    display: flex;
+    align-items: center;
     gap: 8px;
-}
-.loginform .selecta label{
-    margin: auto 0;
     font-weight: 500;
+    cursor: pointer;
 }
-.loginform .selecta input{
-    margin: auto 5px;
-    height: auto;
-    outline: none;
-    border: none;
-    box-shadow: none;
+.selecta input{
     accent-color: var(--brand);
     transform: scale(1.15);
-}
-.loginform .selecta input:first-of-type{
-    margin-right: 26px;
+    cursor: pointer;
 }
 .loginform .case{
     color: var(--muted);
-    margin: 0 24px 6px 24px;
+    margin: 0 24px 4px 24px;
     font-size: 12px;
 }
-.loginform .signin{
+
+/* sample login panel */
+.sample{
+    margin: 8px 24px 4px 24px;
+    padding: 14px;
+    border: 1px dashed var(--brand-light);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #fff7f9, #fffdf3);
+}
+.sample-title{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 12.5px;
+    color: var(--brand-dark);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+.sample-title ion-icon{
+    font-size: 16px;
+}
+.sample-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    padding: 9px 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    transition: .18s ease;
+}
+.sample-row:hover{
+    border-color: var(--brand-light);
+    box-shadow: 0 4px 12px rgba(122,12,46,.12);
+    transform: translateY(-1px);
+}
+.sample-row .cred{
+    font-size: 12.5px;
+    color: var(--ink);
+}
+.sample-row .cred b{
+    color: var(--brand);
+    font-weight: 600;
+}
+.sample-row .use{
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brand-dark);
+    background: var(--accent);
+    padding: 3px 12px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+.sample-note{
+    margin: 4px 2px 0 2px;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* sign in button */
+.signin{
     margin: 18px 24px 0 24px;
     display: flex;
     align-items: center;
@@ -117,16 +220,16 @@ body > img{
     box-shadow: 0 8px 20px rgba(245,197,24,.4);
     transition: .2s ease;
 }
-.loginform .signin:hover{
+.signin:hover{
     transform: translateY(-2px);
     box-shadow: 0 12px 26px rgba(245,197,24,.55);
 }
-.loginform .signin .icon{
+.signin .icon{
     color: var(--brand-dark);
     margin: auto 0 auto 6px;
     transition: 0.2s;
 }
-.loginform .signin input{
+.signin input{
     border: none;
     color: var(--brand-dark);
     background: transparent;
@@ -138,7 +241,7 @@ body > img{
     letter-spacing: .5px;
     cursor: pointer;
 }
-.loginform .signin input:hover,
-.loginform .signin:hover .icon{
+.signin input:hover,
+.signin:hover .icon{
     color: #000;
 }
