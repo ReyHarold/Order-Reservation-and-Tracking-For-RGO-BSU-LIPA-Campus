@@ -1,5 +1,4 @@
-<html>
-    <?php
+<?php
     include "../conn.php";
 
     $code=$_GET['id'];
@@ -10,4 +9,3 @@
     header("location: history.php?code=$code&type=student_rgo");
     exit;
     ?>
-</html>

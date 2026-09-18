@@ -1,5 +1,4 @@
-<html>
-<?php 
+<?php
 include "../conn.php";
             $item = $_POST['item'];
             $tagsList=$_POST['sizes'];
@@ -22,4 +21,3 @@ include "../conn.php";
             header("location: home.php?code=$code&type=student_rgo");
             exit;
 ?>
-</html>

@@ -1,3 +1,35 @@
+<?php
+// Handle login BEFORE any HTML is output, so header() redirects work
+// (avoids "headers already sent" warnings).
+include "conn.php";
+if (isset($_POST['signin'])) {
+    $type = $_POST['select'];
+    $id = $_POST['uname'];
+    $password = $_POST['pass'];
+
+    $qry = "SELECT * FROM $type WHERE code='$id' AND pass='$password'";
+    $result = mysqli_query($conn, $qry);
+    $row = mysqli_fetch_array($result);
+
+    if (mysqli_num_rows($result) > 0) {
+        switch ($type) {
+            case "employee_rgo":
+                if ($row['type'] == "staff") {
+                    header("location: Staff/home.php?code=$id&type=employee_rgo");
+                } else {
+                    header("location: Admin/home.php?code=$id&type=employee_rgo");
+                }
+                break;
+            case "student_rgo":
+                header("location: Student/home.php?code=$id&type=student_rgo");
+                break;
+        }
+    } else {
+        header("location: index.php?MaliPassword");
+    }
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,37 +90,6 @@
         </div>
     </form>
     </div>
-
-    <?php
-    include "conn.php";
-    if (isset($_POST['signin'])) {
-        $type = $_POST['select'];
-        $id = $_POST['uname'];
-        $password = $_POST['pass'];
-
-        $qry = "SELECT * FROM $type WHERE code='$id' AND pass='$password'";
-        $result = mysqli_query($conn, $qry);
-        $row = mysqli_fetch_array($result);
-
-        if (mysqli_num_rows($result) > 0) {
-            switch ($type) {
-                case "employee_rgo":
-                    if ($row['type'] == "staff") {
-                        header("location: Staff/home.php?code=$id&type=employee_rgo");
-                    } else {
-                        header("location: Admin/home.php?code=$id&type=employee_rgo");
-                    }
-                    break;
-                case "student_rgo":
-                    header("location: Student/home.php?code=$id&type=student_rgo");
-                    break;
-            }
-        } else {
-            header("location: index.php?MaliPassword");
-        }
-        exit();
-    };
-    ?>
 
     <script>
         function fillLogin(code, pass) {
