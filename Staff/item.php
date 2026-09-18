@@ -129,7 +129,7 @@ include "../template.php";
                 echo "<td>".$row['Item_ID']."</td>";
                 echo "<td style='color:black;'>".$row['item']."</td>";
                 echo "<td>".$row['price']."</td>";
-                echo "<td>".$row['size']." (".$row['size'].")</td>";
+                echo "<td>".$row['size']."</td>";
                 echo "<td><button onclick=update('$item') name='update' type='button' class = 'button' id = 'templatebut2'class='templatebut'>Update</button></td>";
                 echo "<td><form action='del.php?code=$code&item=$item' method='POST' onsubmit='return confirm(`Do you really want to delete the item : $item?`)'><button type='submit' class = 'button' id = 'templatebut2'class='templatebut' style='background-color:red; color:white;'>Delete</button></form></td>";
                 echo "</tr>";
@@ -181,7 +181,6 @@ function update(item){
         if(items.length == 1){
             document.getElementById("sizesa").checked = false
             document.getElementById("nonePrice").value= ite[2]
-            document.getElementById("none   ").value= ite[3]
         }else{
             document.getElementById("sizesa").checked = true
             switch (ite[3]) {

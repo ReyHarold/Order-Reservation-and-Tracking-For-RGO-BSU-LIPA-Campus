@@ -41,8 +41,8 @@ if ($studentn == ""){
 };
 $datefrom = $_POST['datefrom'];
 $dateto = $_POST['dateto'];
-$check = $_POST['check'];
-$hold = '('.implode(',',$check).')';
+$check = isset($_POST['check']) ? $_POST['check'] : array();
+$hold = count($check) ? '('.implode(',',$check).')' : "('')";
 ?>
 </head>
 <body style="margin: 0 auto;

@@ -3,7 +3,7 @@ include "../conn.php";
 $codereg = $_GET['code'];
 $keyq = $_GET['item'];
 $name = $_POST['itemn'];
-if (isset($_FILES['imgg']['tmp_name'])){
+if (isset($_FILES['imgg']) && $_FILES['imgg']['error'] === UPLOAD_ERR_OK && is_uploaded_file($_FILES['imgg']['tmp_name'])){
     $imgData = "`img`='".addslashes(file_get_contents($_FILES['imgg']['tmp_name']))."',";
 }else{
     $imgData = " ";

@@ -7,7 +7,7 @@
 
     $qry = "DELETE FROM `orders` WHERE `Order_ID` = $order";
     $result = mysqli_query($conn, $qry);
-    header("location: history.php?code=$code&type=student");
+    header("location: history.php?code=$code&type=student_rgo");
     exit;
     ?>
 </html>
