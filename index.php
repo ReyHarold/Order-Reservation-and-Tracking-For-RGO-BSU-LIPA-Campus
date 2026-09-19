@@ -3,15 +3,21 @@
 // (avoids "headers already sent" warnings).
 include "conn.php";
 if (isset($_POST['signin'])) {
-    $type = $_POST['select'];
-    $id = $_POST['uname'];
-    $password = $_POST['pass'];
+    $type = p('select');
+    $id = p('uname');
+    $password = p('pass');
+
+    // only allow the two known login tables as the FROM target
+    if ($type !== 'student_rgo' && $type !== 'employee_rgo') {
+        header("location: index.php?MaliPassword");
+        exit();
+    }
 
     $qry = "SELECT * FROM $type WHERE code='$id' AND pass='$password'";
     $result = mysqli_query($conn, $qry);
-    $row = mysqli_fetch_array($result);
+    $row = $result ? mysqli_fetch_array($result) : null;
 
-    if (mysqli_num_rows($result) > 0) {
+    if ($result && mysqli_num_rows($result) > 0) {
         switch ($type) {
             case "employee_rgo":
                 if ($row['type'] == "staff") {

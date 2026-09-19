@@ -1,17 +1,17 @@
 <?php
 include "../conn.php";
-            $item = $_POST['item'];
-            $tagsList=$_POST['sizes'];
+            $item = p('item');
+            $tagsList = p('sizes');
             $videoids = explode(",", $tagsList);
-            $size = $videoids[0];
-            $price = $videoids[1];
-            $cod = $_POST['codes'];
+            $size = isset($videoids[0]) ? trim($videoids[0]) : '';
+            $price = isset($videoids[1]) ? trim($videoids[1]) : '0';
+            $cod = p('codes');
             $currentDate = date('Y-m-d');
-            $quan = $_POST['quan'];
+            $quan = p('quan');
             $or_price = ($price * $quan);
-            $code = $_GET['code'];
+            $code = g('code');
             if ($size == "Custom"){
-                $size2 = $_POST['width']."X".$_POST['length'];
+                $size2 = p('width')."X".p('length');
             }else{
                 $size2 = $size;
             }

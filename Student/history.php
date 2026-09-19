@@ -138,7 +138,7 @@ include "../template.php";
           </thead>
           <tbody>
     <?php
-    $code = $_GET['code'];
+    $code = g('code');
     $qry = "SELECT a.Order_ID,a.quantity,b.price, b.item, a.statuss, a.Date_Ordered, a.Date_Recieved, a.`em_code`, b.size
     FROM orders AS a
     INNER JOIN item AS b ON a.Item_ID = b.Item_ID

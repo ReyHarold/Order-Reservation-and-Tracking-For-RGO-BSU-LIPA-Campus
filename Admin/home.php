@@ -99,7 +99,7 @@ include "../template.php";
           </thead>
           <tbody>
               <?php
-                $code = $_GET['code'];
+                $code = g('code');
                 $qry = "SELECT a.*, b.code, c.item, c.size, c.price, d.code as admincode FROM `orders` as a 
                 inner join employee_rgo as d ON a.em_code = d.empid 
                 inner join item as c ON a.`Item_ID` = c.Item_ID 

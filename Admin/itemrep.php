@@ -56,7 +56,7 @@ include "../conn.php";
           </thead>
           <tbody>
           <?php
-                $code = $_GET['code'];
+                $code = g('code');
                 $totalp = 0;
                 $totalq = 0;
                 $qry = "SELECT * FROM `item`";

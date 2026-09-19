@@ -131,7 +131,7 @@ include "../template.php";
           </thead>
           <tbody>
               <?php
-                $code = $_GET['code'];
+                $code = g('code');
                 $qry = "SELECT a.*, b.code, c.item, c.size, c.price FROM `orders` as a inner join item as c ON a.`Item_ID` = c.Item_ID inner join student_rgo as b ON a.stud_code = b.studid WHERE NOT `statuss` = 'Recieved' ORDER BY Order_ID;";
                 $result = mysqli_query($conn, $qry);
                 while($row= mysqli_fetch_assoc($result)){

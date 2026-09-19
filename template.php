@@ -1,6 +1,10 @@
 <?php include "conn.php";
-$code = $_GET['code'];
-$type = $_GET['type'];
+$code = g('code');
+$type = g('type');
+// only allow the two known profile tables as the FROM target
+if ($type !== 'student_rgo' && $type !== 'employee_rgo') {
+    $type = 'student_rgo';
+}
 if ($type == 'student_rgo'){
     $qry="SELECT a.*, b.lastname, b.firstname, b.course FROM $type AS a 
      INNER JOIN tbstudinfo AS b ON a.`studid`= b.`studid` WHERE code='$code' GROUP BY `studid`"; 
@@ -10,7 +14,8 @@ if ($type == 'student_rgo'){
 }
 
 $result=mysqli_query($conn,$qry);
-$row = mysqli_fetch_array($result);
+$row = $result ? mysqli_fetch_array($result) : array();
+if (!$row) { $row = array(); }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,13 +35,13 @@ $row = mysqli_fetch_array($result);
         <div class="sign-out"><ion-icon class = "icon"name="power-outline"></ion-icon><a href="../index.php "><input type="button" value="Sign-Out"></a></div></div>
     <div class="info">
     <?php 
-    echo '<div class="infoimg"><img src="data:image/png;base64,'.base64_encode($row['img']).'"/></div>';
-    echo "<ul class='text'><li id='name'>".$row['lastname'].", ".$row['firstname']."</li>";
-    echo "<li id='code'>".$row['code']."</li>";
+    echo '<div class="infoimg"><img src="data:image/png;base64,'.base64_encode($row['img'] ?? '').'"/></div>';
+    echo "<ul class='text'><li id='name'>".($row['lastname'] ?? '').", ".($row['firstname'] ?? '')."</li>";
+    echo "<li id='code'>".($row['code'] ?? '')."</li>";
     if ($type == "student_rgo"){
-    echo "<li id='course'>".$row['course']."</li></ul>";
+    echo "<li id='course'>".($row['course'] ?? '')."</li></ul>";
     }else{
-        echo "<li id='course'>".$row['email']."</li></ul>";
+        echo "<li id='course'>".($row['email'] ?? '')."</li></ul>";
     }
     ?>
     <div id ="sidebutt" class="sidebutt">

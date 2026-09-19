@@ -24,23 +24,23 @@
     </style>
 <?php
 include "../conn.php";
-$codereg = $_GET['code'];
+$codereg = g('code');
 $itemhol = 'b.item =';
-$itemn = $_POST['itemn'];
+$itemn = p('itemn');
 if ($itemn ==""){
     $itemhol = "";
 }else{
     $itemhol = $itemhol . "'$itemn' AND" ;
 };
 $studenthol = 'AND c.code =';
-$studentn = $_POST['studentn'];
+$studentn = p('studentn');
 if ($studentn == ""){
     $studenthol = "";
 }else{
     $studenthol = $studenthol . "'$studentn'";
 };
-$datefrom = $_POST['datefrom'];
-$dateto = $_POST['dateto'];
+$datefrom = p('datefrom');
+$dateto = p('dateto');
 $check = isset($_POST['check']) ? $_POST['check'] : array();
 $hold = count($check) ? '('.implode(',',$check).')' : "('')";
 ?>
@@ -78,7 +78,7 @@ $hold = count($check) ? '('.implode(',',$check).')' : "('')";
           </thead>
           <tbody>
           <?php
-                $code = $_GET['code'];
+                $code = g('code');
                 $totalp = 0;
                 $totalq = 0;
                 $qry = "SELECT a.*, b.price, b.item, d.code As `admincode`, b.size, c.code

@@ -1,8 +1,8 @@
 <?php
 include "../conn.php";
-$orderID = $_GET['id'];
-$code = $_GET['code'];
-$stat = $_GET['stat'];
+$orderID = (int) g('id');
+$code = g('code');
+$stat = g('stat');
 $currentDate = date('Y-m-d');
 if ($stat == "Pending"){
 $qry = "UPDATE `orders` SET `statuss`='Ready for Pickup' WHERE Order_ID = '$orderID'";

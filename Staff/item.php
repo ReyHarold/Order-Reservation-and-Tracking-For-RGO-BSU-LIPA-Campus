@@ -120,7 +120,7 @@ include "../template.php";
           </thead>
           <tbody>
               <?php
-                $code = $_GET['code'];
+                $code = g('code');
                 $qry = "SELECT * FROM `item`;";
                 $result = mysqli_query($conn, $qry);
                 while($row= mysqli_fetch_assoc($result)){
