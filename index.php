@@ -76,18 +76,39 @@ if (isset($_POST['signin'])) {
 
         <p class="case">*password is case sensitive</p>
 
-        <!-- Sample student login (demo credentials) -->
+        <!-- Demo accounts (sample credentials) -->
         <div class="sample" role="note">
-            <div class="sample-title"><ion-icon name="school-outline"></ion-icon> Sample student login</div>
-            <button type="button" class="sample-row" onclick="fillLogin('21-123123','123')">
-                <span class="cred"><b>Sr-Code:</b> 21-123123 &nbsp;·&nbsp; <b>Password:</b> 123</span>
+            <div class="sample-head">
+                <div class="avatar" aria-hidden="true">
+                    <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Profile picture">
+                        <defs>
+                            <linearGradient id="avg" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#a11540"/>
+                                <stop offset="1" stop-color="#5c081f"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="48" cy="48" r="48" fill="url(#avg)"/>
+                        <circle cx="48" cy="38" r="16" fill="#f5c518"/>
+                        <path d="M20 82c0-15 12.5-24 28-24s28 9 28 24z" fill="#f5c518"/>
+                    </svg>
+                </div>
+                <div class="who">
+                    <span class="name">Peter Parker</span>
+                    <span class="role">Demo account · try either role</span>
+                </div>
+            </div>
+
+            <button type="button" class="sample-row" onclick="fillLogin('21-123123','123','student')">
+                <span class="rolebadge student"><ion-icon name="school-outline"></ion-icon> Student</span>
+                <span class="cred"><b>Code</b> 21-123123 &nbsp;·&nbsp; <b>Pass</b> 123</span>
                 <span class="use">Use</span>
             </button>
-            <button type="button" class="sample-row" onclick="fillLogin('21-321321','12345')">
-                <span class="cred"><b>Sr-Code:</b> 21-321321 &nbsp;·&nbsp; <b>Password:</b> 12345</span>
+            <button type="button" class="sample-row" onclick="fillLogin('123123','123123','staff')">
+                <span class="rolebadge staff"><ion-icon name="shield-checkmark-outline"></ion-icon> Staff</span>
+                <span class="cred"><b>Code</b> 123123 &nbsp;·&nbsp; <b>Pass</b> 123123</span>
                 <span class="use">Use</span>
             </button>
-            <p class="sample-note">Click “Use” to auto-fill, then press Sign in.</p>
+            <p class="sample-note">Click <b>Use</b> to auto-fill and select the role, then press Sign in.</p>
         </div>
 
         <div class="signin">
@@ -98,9 +119,9 @@ if (isset($_POST['signin'])) {
     </div>
 
     <script>
-        function fillLogin(code, pass) {
-            var student = document.getElementById('student');
-            if (student) student.checked = true;
+        function fillLogin(code, pass, role) {
+            document.getElementById('student').checked = (role === 'student');
+            document.getElementById('admin').checked = (role === 'staff');
             document.getElementById('uname').value = code;
             document.getElementById('pass').value = pass;
             document.getElementById('pass').focus();
